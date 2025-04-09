@@ -45,6 +45,7 @@ def add_security_headers(response):
     response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
     return response
 
+
 @app.route("/security")
 def security():
     """Root URL response"""
