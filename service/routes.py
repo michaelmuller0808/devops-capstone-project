@@ -46,17 +46,6 @@ def add_security_headers(response):
     return response
 
 
-@app.route("/security")
-def security():
-    """Root URL response"""
-    return (
-        jsonify(
-
-        ),
-        status.HTTP_200_OK,
-    )
-
-
 ######################################################################
 # CREATE A NEW ACCOUNT
 ######################################################################
