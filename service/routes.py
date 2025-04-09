@@ -132,57 +132,57 @@ def delete_accounts(account_id):
     return "", status.HTTP_204_NO_CONTENT
 
 
-######################################################################
-#  U T I L I T Y   F U N C T I O N S
-######################################################################
+    ######################################################################
+    #  U T I L I T Y   F U N C T I O N S
+    ######################################################################
 
 
-def check_content_type(media_type):
-    """Checks that the media type is correct"""
-    content_type = request.headers.get("Content-Type")
-    if content_type and content_type == media_type:
-        return
-    app.logger.error("Invalid Content-Type: %s", content_type)
-    abort(
-        status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
-        f"Content-Type must be {media_type}",
-    )
+    def check_content_type(media_type):
+        """Checks that the media type is correct"""
+        content_type = request.headers.get("Content-Type")
+        if content_type and content_type == media_type:
+            return
+        app.logger.error("Invalid Content-Type: %s", content_type)
+        abort(
+            status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
+            f"Content-Type must be {media_type}",
+        )
 
-def test_get_account_not_found(self):
-    """It should not Read an Account that is not found"""
-    resp = self.client.get(f"{BASE_URL}/0")
-    self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
+    def test_get_account_not_found(self):
+        """It should not Read an Account that is not found"""
+        resp = self.client.get(f"{BASE_URL}/0")
+        self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
 
-def test_get_account_list(self):
-    """It should Get a list of Accounts"""
-    self._create_accounts(5)
-    resp = self.client.get(BASE_URL)
-    self.assertEqual(resp.status_code, status.HTTP_200_OK)
-    data = resp.get_json()
-    self.assertEqual(len(data), 5)
+    def test_get_account_list(self):
+        """It should Get a list of Accounts"""
+        self._create_accounts(5)
+        resp = self.client.get(BASE_URL)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        data = resp.get_json()
+        self.assertEqual(len(data), 5)
 
-def test_update_account(self):
-    """It should Update an existing Account"""
-    # create an Account to update
-    test_account = Account()
-    resp = self.client.post(BASE_URL, json=test_account.serialize())
-    self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
+    def test_update_account(self):
+        """It should Update an existing Account"""
+        # create an Account to update
+        test_account = Account()
+        resp = self.client.post(BASE_URL, json=test_account.serialize())
+        self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
 
-    # update the account
-    new_account = resp.get_json()
-    new_account["name"] = "Something Known"
-    resp = self.client.put(f"{BASE_URL}/{new_account['id']}", json=new_account)
-    self.assertEqual(resp.status_code, status.HTTP_200_OK)
-    updated_account = resp.get_json()
-    self.assertEqual(updated_account["name"], status.HTTP_200_OK)
+        # update the account
+        new_account = resp.get_json()
+        new_account["name"] = "Something Known"
+        resp = self.client.put(f"{BASE_URL}/{new_account['id']}", json=new_account)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        updated_account = resp.get_json()
+        self.assertEqual(updated_account["name"], status.HTTP_200_OK)
 
-def test_delete_account(self):
-    """It should Delete an Account"""
-    account = self._create_accounts(1)[0]
-    resp = self.client.delete(f"{BASE_URL}/{account.id}")
-    self.assertEqual(resp.status_code, status.HTTP_204_NO_CONTENT)
+    def test_delete_account(self):
+        """It should Delete an Account"""
+        account = self._create_accounts(1)[0]
+        resp = self.client.delete(f"{BASE_URL}/{account.id}")
+        self.assertEqual(resp.status_code, status.HTTP_204_NO_CONTENT)
 
-def test_method_not_allowed(self):
-    """It should not allow an illegal method call"""
-    resp = self.client.delete(BASE_URL)
-    self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+    def test_method_not_allowed(self):
+        """It should not allow an illegal method call"""
+        resp = self.client.delete(BASE_URL)
+        self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
