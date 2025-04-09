@@ -10,6 +10,8 @@ from service.common import status  # HTTP Status Codes
 from . import app  # Import Flask application
 
 BASE_URL = "/accounts"
+
+
 ############################################################
 # Health Endpoint
 ############################################################
@@ -192,4 +194,3 @@ def test_method_not_allowed(self):
     """It should not allow an illegal method call"""
     resp = self.client.delete(BASE_URL)
     self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-
