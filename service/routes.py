@@ -37,6 +37,25 @@ def index():
     )
 
 
+@app.after_request
+def add_security_headers(response):
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['Content-Security-Policy'] = "default-src 'self'; object-src 'none'"
+    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+    return response
+
+@app.route("/security")
+def security():
+    """Root URL response"""
+    return (
+        jsonify(
+
+        ),
+        status.HTTP_200_OK,
+    )
+
+
 ######################################################################
 # CREATE A NEW ACCOUNT
 ######################################################################
